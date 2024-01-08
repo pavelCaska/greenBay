@@ -66,7 +66,7 @@ public class PurchaseControllerITests {
     public void givenValidPurchaseId_whenSHowDeletePurchase_thenDeletePurchase() throws Exception {
         // given - precondition or setup
         UUID adminId = UUID.randomUUID();
-        User admin = new User.Builder()
+        User admin = User.builder()
                 .id(adminId)
                 .username("admin")
                 .password(userService.encodePassword("A12345"))
@@ -79,7 +79,7 @@ public class PurchaseControllerITests {
         authorizedUser += jwtService.generateToken("admin");
 
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -89,7 +89,7 @@ public class PurchaseControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -103,7 +103,7 @@ public class PurchaseControllerITests {
         itemRepository.save(item);
 
         UUID buyerId = UUID.randomUUID();
-        User buyer = new User.Builder()
+        User buyer = User.builder()
                 .id(buyerId)
                 .username("user2")
                 .password(userService.encodePassword("u23456"))
@@ -112,7 +112,7 @@ public class PurchaseControllerITests {
                 .build();
         userRepository.save(buyer);
 
-        Purchase purchase = new Purchase.Builder()
+        Purchase purchase = Purchase.builder()
                 .id(1L)
                 .item(item)
                 .buyer(buyer)
@@ -135,7 +135,7 @@ public class PurchaseControllerITests {
     public void givenInvalidPurchaseId_whenSHowDeletePurchase_thenException() throws Exception {
         // given - precondition or setup
         UUID adminId = UUID.randomUUID();
-        User admin = new User.Builder()
+        User admin = User.builder()
                 .id(adminId)
                 .username("admin")
                 .password(userService.encodePassword("A12345"))
@@ -148,7 +148,7 @@ public class PurchaseControllerITests {
         authorizedUser += jwtService.generateToken("admin");
 
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -158,7 +158,7 @@ public class PurchaseControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -172,7 +172,7 @@ public class PurchaseControllerITests {
         itemRepository.save(item);
 
         UUID buyerId = UUID.randomUUID();
-        User buyer = new User.Builder()
+        User buyer = User.builder()
                 .id(buyerId)
                 .username("user2")
                 .password(userService.encodePassword("u23456"))
@@ -181,7 +181,7 @@ public class PurchaseControllerITests {
                 .build();
         userRepository.save(buyer);
 
-        Purchase purchase = new Purchase.Builder()
+        Purchase purchase = Purchase.builder()
                 .id(1L)
                 .item(item)
                 .buyer(buyer)

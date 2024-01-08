@@ -5,15 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class BidListDTO {
-
-    private Long id;
-    private String bidderUsername;
-    private int bidAmount;
+public class UserListDTO {
+    private UUID id;
+    private String username;
+    private String password;
+    private double balance;
+    private String roles;
 
 }

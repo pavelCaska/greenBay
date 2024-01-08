@@ -8,6 +8,7 @@ import com.pc.greenbay.models.ResponseDTOs.*;
 import com.pc.greenbay.models.User;
 import com.pc.greenbay.repositories.ItemRepository;
 import com.pc.greenbay.repositories.PurchaseRepository;
+import com.pc.greenbay.repositories.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -22,6 +23,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,18 +52,18 @@ public class ItemServiceTests {
 
     @BeforeEach
     public void setup() {
+
         UUID sellerId = UUID.randomUUID();
-        seller = new User.Builder()
+        seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
                 .balance(100)
                 .roles("ROLE_USER")
                 .build();
-//        userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -143,7 +145,7 @@ public class ItemServiceTests {
     public void givenItemList_whenGetItemBySellableAndPage_thenReturnItemPage() {
         // given - precondition or setup
         UUID itemId2 = UUID.randomUUID();
-        Item item2 = new Item.Builder()
+        Item item2 = Item.builder()
                 .id(itemId2)
                 .name("Asus")
                 .description("notebook")
@@ -151,11 +153,10 @@ public class ItemServiceTests {
                 .startingPrice(100)
                 .purchasePrice(150)
                 .lastBid(0)
-                .sellable(true)
                 .seller(seller)
                 .build();
         UUID itemId3 = UUID.randomUUID();
-        Item item3 = new Item.Builder()
+        Item item3 = Item.builder()
                 .id(itemId3)
                 .name("Apple")
                 .description("iPad")
@@ -163,7 +164,6 @@ public class ItemServiceTests {
                 .startingPrice(200)
                 .purchasePrice(250)
                 .lastBid(0)
-                .sellable(true)
                 .seller(seller)
                 .build();
 
@@ -183,7 +183,7 @@ public class ItemServiceTests {
     public void givenItemList_whenListItems_thenJsonList() {
         // given - precondition or setup
         UUID itemId2 = UUID.randomUUID();
-        Item item2 = new Item.Builder()
+        Item item2 = Item.builder()
                 .id(itemId2)
                 .name("Asus")
                 .description("notebook")
@@ -191,11 +191,10 @@ public class ItemServiceTests {
                 .startingPrice(100)
                 .purchasePrice(150)
                 .lastBid(0)
-                .sellable(true)
                 .seller(seller)
                 .build();
         UUID itemId3 = UUID.randomUUID();
-        Item item3 = new Item.Builder()
+        Item item3 = Item.builder()
                 .id(itemId3)
                 .name("Apple")
                 .description("iPad")
@@ -203,7 +202,6 @@ public class ItemServiceTests {
                 .startingPrice(200)
                 .purchasePrice(250)
                 .lastBid(0)
-                .sellable(true)
                 .seller(seller)
                 .build();
         given(itemRepository.findAll()).willReturn(List.of(item, item2, item3));
@@ -222,7 +220,7 @@ public class ItemServiceTests {
         // given - precondition or setup
         ItemRequestDTO itemRequestDTO = new ItemRequestDTO("Apple", "iPad", "/img/green_fox_logo.png", 200, 250);
         UUID itemToSaveId = UUID.randomUUID();
-        Item itemToSave = new Item.Builder()
+        Item itemToSave = Item.builder()
                 .id(itemToSaveId)
                 .name(itemRequestDTO.getName())
                 .description(itemRequestDTO.getDescription())
@@ -273,7 +271,7 @@ public class ItemServiceTests {
     public void givenValidItemIDAndNotSellable_whenShowItemDetails_thenReturnItemNotSellableResponseDTO() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -287,7 +285,7 @@ public class ItemServiceTests {
 
         given(itemRepository.findItemById(itemId)).willReturn(Optional.of(item));
         UUID buyerId = UUID.randomUUID();
-        User buyer = new User.Builder()
+        User buyer = User.builder()
                 .id(buyerId)
                 .username("user2")
                 .password("u23456")
@@ -295,7 +293,7 @@ public class ItemServiceTests {
                 .roles("ROLE_USER")
                 .build();
 
-        Purchase purchase = new Purchase.Builder()
+        Purchase purchase = Purchase.builder()
                 .id(1L)
                 .purchaseAmount(60)
                 .buyer(buyer)
@@ -321,7 +319,7 @@ public class ItemServiceTests {
     public void givenInvalidItemId_whenShowItemDetails_thenThrowItemNotFoundException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -351,7 +349,7 @@ public class ItemServiceTests {
     public void givenValidItemId_whenShowItemDetails_thenThrowPurchaseNotFoundException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -382,7 +380,7 @@ public class ItemServiceTests {
     public void givenValidItemIDAndSellable_whenShowItemDetails_thenReturnItemSellableResponseDTO() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -395,7 +393,7 @@ public class ItemServiceTests {
                 .build();
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -404,7 +402,7 @@ public class ItemServiceTests {
                 .build();
 
         int bidAmount = 49;
-        Bid bid = new Bid.Builder()
+        Bid bid = Bid.builder()
                 .id(1L)
                 .item(item)
                 .bidder(bidder)
@@ -427,6 +425,4 @@ public class ItemServiceTests {
         assertThat(itemSellableResponseDTO.getBidList()).isNotNull();
         assertThat(itemSellableResponseDTO.getBidList()).size().isEqualTo(1);
     }
-
-
 }

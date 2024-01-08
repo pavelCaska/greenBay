@@ -24,8 +24,7 @@ public class ItemRepositoryTests {
     @DisplayName("JUnit test save item operation")
     public void givenItemObject_whenSave_thenReturnSavedItem() {
         // given - precondition or setup
-        User seller = new User.Builder()
-//                .id(UUID.fromString("fd814ac5-8ac9-40c5-9067-e0a52a8cbde6"))
+        User seller = User.builder()
                 .username("user1")
                 .password("u12345")
                 .balance(100)
@@ -33,8 +32,7 @@ public class ItemRepositoryTests {
                 .build();
         userRepository.save(seller);
 
-        Item item = new Item.Builder()
-//                .id(UUID.fromString("259587d6-1e4d-4e33-a9e8-3aed3492ddee"))
+        Item item = Item.builder()
                 .name("Lenovo")
                 .description("tablet")
                 .photoURL("/img/green_fox_logo.png")
@@ -55,8 +53,7 @@ public class ItemRepositoryTests {
     @DisplayName("JUnit test for findItemById operation")
     public void givenItemObject_whenFindItemById_thenReturnItemObject() {
         // given - precondition or setup
-        User seller = new User.Builder()
-//                .id(UUID.fromString("fd814ac5-8ac9-40c5-9067-e0a52a8cbde6"))
+        User seller = User.builder()
                 .username("user1")
                 .password("u12345")
                 .balance(100)
@@ -64,15 +61,13 @@ public class ItemRepositoryTests {
                 .build();
         userRepository.save(seller);
 
-        Item item = new Item.Builder()
-//                .id(UUID.fromString("259587d6-1e4d-4e33-a9e8-3aed3492ddee"))
+        Item item = Item.builder()
                 .name("Lenovo")
                 .description("tablet")
                 .photoURL("/img/green_fox_logo.png")
                 .startingPrice(10)
                 .purchasePrice(50)
                 .lastBid(0)
-                .sellable(true)
                 .seller(seller)
                 .build();
         itemRepository.save(item);
@@ -87,8 +82,7 @@ public class ItemRepositoryTests {
     @DisplayName("JUnit test for getting all sellable items ")
     public void givenItemObjects_whenFindAllBySellableTrue_thenReturnPage() {
         // given - precondition or setup
-        User seller = new User.Builder()
-//                .id(UUID.fromString("fd814ac5-8ac9-40c5-9067-e0a52a8cbde6"))
+        User seller = User.builder()
                 .username("user1")
                 .password("u12345")
                 .balance(100)
@@ -96,8 +90,7 @@ public class ItemRepositoryTests {
                 .build();
         userRepository.save(seller);
 
-        Item item = new Item.Builder()
-//                .id(UUID.fromString("259587d6-1e4d-4e33-a9e8-3aed3492ddee"))
+        Item item = Item.builder()
                 .name("Lenovo")
                 .description("tablet")
                 .photoURL("/img/green_fox_logo.png")
@@ -109,8 +102,7 @@ public class ItemRepositoryTests {
                 .build();
         itemRepository.save(item);
 
-        Item item2 = new Item.Builder()
-//                .id(UUID.fromString("556c8778-3c04-4a01-83ea-459e37c01e33")) // uuid
+        Item item2 = Item.builder()
                 .name("Samsung")
                 .description("mobile phone")
                 .photoURL("/img/green_fox_logo.png")
@@ -122,8 +114,7 @@ public class ItemRepositoryTests {
                 .build();
         itemRepository.save(item2);
 
-        Item item3 = new Item.Builder()
-//                .id(UUID.fromString("a59a33dd-d40e-4500-bff2-e566146b0bb2")) // uuid
+        Item item3 = Item.builder()
                 .name("Lenovo")
                 .description("mobile phone")
                 .photoURL("/img/green_fox_logo.png")
@@ -142,5 +133,4 @@ public class ItemRepositoryTests {
         Assertions.assertThat(itemPage).isNotNull();
         Assertions.assertThat(itemPage).size().isEqualTo(2);
     }
-
 }

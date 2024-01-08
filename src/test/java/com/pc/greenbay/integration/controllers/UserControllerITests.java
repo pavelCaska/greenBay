@@ -61,7 +61,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for user login with valid input")
     public void givenValidUserData_whenLogin_thenReturnJwtTokenAndBalance() throws Exception {
         // given - precondition or setup
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -87,7 +87,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for user login with invalid password")
     public void givenInvalidPassword_whenLogin_thenReturnErrorDTO() throws Exception {
         // given - precondition or setup
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -111,7 +111,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for user login with missing username and password")
     public void givenInvalidPassword_whenLogin_thenReturnErrorResponseForLogin() throws Exception {
         // given - precondition or setup
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -138,7 +138,7 @@ public class UserControllerITests {
     public void givenAuthenticatedUser_whenIsRunning_thenStringInBody() throws Exception {
         // given - precondition or setup
         UUID userId = UUID.randomUUID();
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .id(userId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -154,7 +154,6 @@ public class UserControllerITests {
         ResultActions response = mockMvc.perform(get("/api/isRunning")
                 .header("authorization", authorizedUser)
                 .contentType(MediaType.APPLICATION_JSON));
-//                .content(om.writeValueAsString(loginRequestDTO)));
 
         // then - verify the output
         response.andExpect(MockMvcResultMatchers.status().isOk())
@@ -165,7 +164,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for helper showUser method ")
     public void givenAuthenticatedAdmin_whenShowUser_thenUserList() throws Exception {
         // given - precondition or setup
-        User admin = new User.Builder()
+        User admin = User.builder()
                 .username("admin")
                 .password(userService.encodePassword("A12345"))
                 .balance(0.0)
@@ -175,7 +174,7 @@ public class UserControllerITests {
         String authorizedUser = "Bearer ";
         authorizedUser += jwtService.generateToken("admin");
 
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -183,7 +182,7 @@ public class UserControllerITests {
                 .build();
         userRepository.save(user1);
 
-        User user2 = new User.Builder()
+        User user2 = User.builder()
                 .username("user2")
                 .password(userService.encodePassword("u23456"))
                 .balance(200.0)
@@ -196,7 +195,6 @@ public class UserControllerITests {
         ResultActions response = mockMvc.perform(get("/api/user")
                 .header("authorization", authorizedUser)
                 .contentType(MediaType.APPLICATION_JSON));
-//                .content(om.writeValueAsString(loginRequestDTO)));
 
         // then - verify the output
         response.andExpect(MockMvcResultMatchers.status().isOk())
@@ -212,7 +210,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for helper updateBalance method ")
     public void givenAuthenticatedAdmin_whenUpdateBalance_thenJSON() throws Exception {
         // given - precondition or setup
-        User admin = new User.Builder()
+        User admin = User.builder()
                 .username("admin")
                 .password(userService.encodePassword("A12345"))
                 .balance(0.0)
@@ -222,7 +220,7 @@ public class UserControllerITests {
         String authorizedUser = "Bearer ";
         authorizedUser += jwtService.generateToken("admin");
 
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -246,7 +244,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for helper updateBalance method with missing user")
     public void givenAuthenticatedAdminAndMissingUser_whenUpdateBalance_thenErrorDTO() throws Exception {
         // given - precondition or setup
-        User admin = new User.Builder()
+        User admin = User.builder()
                 .username("admin")
                 .password(userService.encodePassword("A12345"))
                 .balance(0.0)
@@ -256,7 +254,7 @@ public class UserControllerITests {
         String authorizedUser = "Bearer ";
         authorizedUser += jwtService.generateToken("admin");
 
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -280,7 +278,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for helper updateBalance method when negative newBalance")
     public void givenAuthenticatedAdminAndNegativeNewBalance_whenUpdateBalance_thenErrorDTO() throws Exception {
         // given - precondition or setup
-        User admin = new User.Builder()
+        User admin = User.builder()
                 .username("admin")
                 .password(userService.encodePassword("A12345"))
                 .balance(0.0)
@@ -290,7 +288,7 @@ public class UserControllerITests {
         String authorizedUser = "Bearer ";
         authorizedUser += jwtService.generateToken("admin");
 
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -314,7 +312,7 @@ public class UserControllerITests {
     @DisplayName("Integration test for helper updateBalance method when parameter is missing")
     public void givenAuthenticatedAdminAndMissingParameter_whenUpdateBalance_thenErrorDTO() throws Exception {
         // given - precondition or setup
-        User admin = new User.Builder()
+        User admin = User.builder()
                 .username("admin")
                 .password(userService.encodePassword("A12345"))
                 .balance(0.0)
@@ -324,7 +322,7 @@ public class UserControllerITests {
         String authorizedUser = "Bearer ";
         authorizedUser += jwtService.generateToken("admin");
 
-        User user1 = new User.Builder()
+        User user1 = User.builder()
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
                 .balance(100.0)
@@ -336,6 +334,7 @@ public class UserControllerITests {
         ResultActions response = mockMvc.perform(patch("/api/balance/{username}", "user2")
                 .header("authorization", authorizedUser)
                 .contentType(MediaType.APPLICATION_JSON));
+
 
         // then - verify the output
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())

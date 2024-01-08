@@ -21,8 +21,9 @@ public class UserRepositoryTests {
     @DisplayName("JUnit test for save user operation")
     public void givenUserObject_whenSave_thenReturnSavedUser() {
         // given - precondition or setup
-        User user = new User.Builder()
-//                .id(UUID.fromString("fd814ac5-8ac9-40c5-9067-e0a52a8cbde6"))
+        UUID userId = UUID.randomUUID();
+        User user = User.builder()
+                .id(userId)
                 .username("user1")
                 .password("u12345")
                 .balance(100)
@@ -39,8 +40,7 @@ public class UserRepositoryTests {
     @DisplayName("JUnit test for update user operation")
     public void givenUserObject_whenUpdateUser_thenReturnUpdatedUser() {
         // given - precondition or setup
-        User user = new User.Builder()
-//                .id(UUID.fromString("fd814ac5-8ac9-40c5-9067-e0a52a8cbde6"))
+        User user = User.builder()
                 .username("user1")
                 .password("u12345")
                 .balance(100)
@@ -61,8 +61,7 @@ public class UserRepositoryTests {
     @DisplayName("JUnit test for find user by username operation")
     public void givenUserObject_whenFindByUsername_thenReturnUserObject() {
         // given - precondition or setup
-        User user = new User.Builder()
-//                .id(UUID.fromString("fd814ac5-8ac9-40c5-9067-e0a52a8cbde6"))
+        User user = User.builder()
                 .username("user1")
                 .password("u12345")
                 .balance(100)
@@ -81,8 +80,7 @@ public class UserRepositoryTests {
     @DisplayName("JUnit test for find all users by roles operation")
     public void givenUserObjects_whenFindAllByRolesContains_thenReturnList() {
         // given - precondition or setup
-        User user = new User.Builder()
-//                .id(UUID.fromString("fd814ac5-8ac9-40c5-9067-e0a52a8cbde6"))
+        User user = User.builder()
                 .username("user1")
                 .password("u12345")
                 .balance(100)
@@ -90,8 +88,7 @@ public class UserRepositoryTests {
                 .build();
         userRepository.save(user);
 
-        User admin = new User.Builder()
-//                .id(UUID.fromString("fc900f8d-5db2-4f52-8dee-e82c23555212"))
+        User admin = User.builder()
                 .username("admin")
                 .password("A12345")
                 .balance(100)
@@ -106,7 +103,4 @@ public class UserRepositoryTests {
         Assertions.assertThat(userList).isNotNull();
         Assertions.assertThat(userList).size().isEqualTo(1);
     }
-
-
-
 }

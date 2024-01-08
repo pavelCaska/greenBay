@@ -41,8 +41,6 @@ public class PurchaseServiceTests {
     @InjectMocks
     private PurchaseServiceImpl purchaseService;
 
-//    private User buyer;
-//    private User seller;
     private Item item;
     private Purchase purchase;
 
@@ -50,27 +48,25 @@ public class PurchaseServiceTests {
     public void setup(){
 
         UUID buyerId = UUID.randomUUID();
-        User buyer = new User.Builder()
+        User buyer = User.builder()
                 .id(buyerId)
                 .username("user1")
                 .password("u12345")
                 .balance(100)
                 .roles("ROLE_USER")
                 .build();
-//        userRepository.save(buyer);
 
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user2")
                 .password("u23456")
                 .balance(10)
                 .roles("ROLE_USER")
                 .build();
-//        userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -80,9 +76,8 @@ public class PurchaseServiceTests {
                 .lastBid(0)
                 .seller(seller)
                 .build();
-//        itemRepository.save(item);
 
-        purchase = new Purchase.Builder()
+        purchase = Purchase.builder()
                 .id(1L)
                 .purchaseAmount(60)
                 .buyer(buyer)
@@ -147,9 +142,4 @@ public class PurchaseServiceTests {
         // then - verify the output
         verify(purchaseRepository).delete(any(Purchase.class));
     }
-
-
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.pc.greenbay.services;
 
+import com.pc.greenbay.models.ResponseDTOs.UserListDTO;
 import com.pc.greenbay.models.User;
 import org.springframework.validation.BindingResult;
 
@@ -20,5 +21,6 @@ public interface UserService {
 
     Map<String, Double> updateBalance(String username, double balance) throws Exception;
 
-    List<User> listAllUsers();
+//    List<User> listAllUsers();
+    List<UserListDTO> listAllUsers();
 }

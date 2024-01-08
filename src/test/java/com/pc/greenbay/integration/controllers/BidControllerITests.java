@@ -68,7 +68,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenThrowNoMoneyException() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -78,7 +78,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -92,7 +92,7 @@ public class BidControllerITests {
         itemRepository.save(item);
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -121,7 +121,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenItemNotFoundException() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -131,7 +131,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -146,7 +146,7 @@ public class BidControllerITests {
         UUID invalidItemId = UUID.randomUUID();
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -175,7 +175,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenThrowBidderIsSellerException() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -185,7 +185,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -198,6 +198,7 @@ public class BidControllerITests {
                 .build();
         itemRepository.save(item);
 
+//        UUID bidderId = UUID.randomUUID();
         User bidder = seller;
         String authorizedUser = "Bearer ";
         authorizedUser += jwtService.generateToken("user1");
@@ -220,7 +221,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenThrowNotSellableException() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -230,7 +231,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -244,7 +245,7 @@ public class BidControllerITests {
         itemRepository.save(item);
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -273,7 +274,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenThrowNotEnoughMoneyException() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -283,7 +284,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -297,7 +298,7 @@ public class BidControllerITests {
         itemRepository.save(item);
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -326,7 +327,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenThrowBitTooLowException() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -336,7 +337,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -350,7 +351,7 @@ public class BidControllerITests {
         itemRepository.save(item);
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -379,7 +380,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenSaveBidAndReturnDTO() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -389,7 +390,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -403,7 +404,7 @@ public class BidControllerITests {
         itemRepository.save(item);
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -436,7 +437,7 @@ public class BidControllerITests {
     public void givenValidInput_whenPlaceBid_thenPurchaseItemAndReturnDTO() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -446,7 +447,7 @@ public class BidControllerITests {
         userRepository.save(seller);
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -460,7 +461,7 @@ public class BidControllerITests {
         itemRepository.save(item);
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
