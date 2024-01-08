@@ -25,8 +25,6 @@ public class JwtService {
     private UserRepository userRepository;
     public static final String SECRET = "404D635166546A576E5A7234753778214125442A472D4B6150645267556B5870";
 
-    //    public static final int accessTokenExpirationTime = Integer.parseInt(System.getenv("JWT_ACCESS_TOKEN_EXPIRATION_TIME"));
-    //Variable for Test
     public static final int accessTokenExpirationTime = 1000*60*30;
 
     public String extractUsername(String token) {
