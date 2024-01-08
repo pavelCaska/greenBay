@@ -48,9 +48,7 @@ public class DefaultSecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("/api/user")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/api/balance")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcherBuilder.pattern("/api/purchase/{id}/delete")).hasRole("ADMIN")
-
-//                        .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll()
-//                       ^ Shouldn't be used with respect for frontend!
+//                        .requestMatchers(mvcMatcherBuilder.pattern("/error")).permitAll() // Shouldn't be used with respect for frontend!
                         .anyRequest().authenticated())
                 .csrf((csrf) -> csrf.disable());
         http.authenticationProvider(authenticationProvider())
