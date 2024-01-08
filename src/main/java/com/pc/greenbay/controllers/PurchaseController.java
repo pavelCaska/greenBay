@@ -35,12 +35,5 @@ public class PurchaseController {
         } catch (Exception e) {
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-//
-//        if(deletePurchaseResponseDTO.isSuccess()) {
-//            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(deletePurchaseResponseDTO.getMessage());
-//        }
-//        else {
-//            return ResponseEntity.badRequest().body(deletePurchaseResponseDTO.getMessage());
-//        }
     }
 }
