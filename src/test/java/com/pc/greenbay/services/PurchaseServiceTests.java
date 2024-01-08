@@ -115,20 +115,6 @@ public class PurchaseServiceTests {
         // then - verify the output
         assertThat(savedPurchase).isNotNull();
     }
-//    @Test
-//    @DisplayName("JUnit test for delete purchase method")
-//    public void givenPurchaseId_whenDeletePurchase_thenNothing() {
-//        // given - precondition or setup
-//        Long purchaseId = 1L;
-//
-//        willDoNothing().given(purchaseRepository).deleteById(purchaseId);
-//
-//        // when - action or behaviour to be tested
-//        purchaseService.deletePurchase(purchaseId);
-//
-//        // then - verify the output
-//        verify(purchaseRepository, times(1)).deleteById(purchaseId);
-//    }
 
     @Test
     @DisplayName("JUnit test for delete purchase method")

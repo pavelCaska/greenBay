@@ -30,7 +30,6 @@ public class UserServiceTests {
 
     @Mock
     private UserRepository userRepository;
-//    private UserService userService;
     @Mock
     private PasswordEncoder passwordEncoder;
     @InjectMocks
@@ -40,9 +39,6 @@ public class UserServiceTests {
 
     @BeforeEach
     public void setup(){
-//        userRepository = Mockito.mock(UserRepository.class);
-//        passwordEncoder = Mockito.mock(PasswordEncoder.class);
-//        userService = new UserServiceImpl(userRepository, passwordEncoder);
         UUID userId = UUID.randomUUID();
         user = new User.Builder()
                 .id(userId)
@@ -51,7 +47,6 @@ public class UserServiceTests {
                 .balance(100)
                 .roles("ROLE_USER")
                 .build();
-//        userRepository.save(user);
     }
 
     @Test

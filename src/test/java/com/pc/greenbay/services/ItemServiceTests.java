@@ -38,8 +38,6 @@ import static org.mockito.Mockito.verify;
 public class ItemServiceTests {
     @Mock
     private ItemRepository itemRepository;
-//    @Mock
-//    private PurchaseRepository purchaseRepository;
     @Mock
     private PurchaseService purchaseService;
     @Mock
