@@ -12,6 +12,4 @@ public interface PurchaseService {
     Optional<Purchase> getPurchaseByItem(Item item);
 
     void deletePurchase(Long id) throws Exception;
-
-//    DeletePurchaseResponseDTO deletePurchase(Long id);
 }
