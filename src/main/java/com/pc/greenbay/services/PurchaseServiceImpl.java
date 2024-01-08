@@ -28,21 +28,6 @@ public class PurchaseServiceImpl implements PurchaseService {
         return purchaseRepository.findByItem(item);
     }
 
-//    @Override
-//    public DeletePurchaseResponseDTO deletePurchase(Long id) {
-//        DeletePurchaseResponseDTO response = new DeletePurchaseResponseDTO();
-//        try {
-//            purchaseRepository.deleteById(id);
-//            response.setSuccess(true);
-//            response.setMessage("Purchase deleted successfully.");
-//        } catch (Exception e) {
-//            response.setSuccess(false);
-////            response.setMessage("Failed to delete purchase.");
-//            response.setMessage(e.getMessage());
-//        }
-//        return response;
-//    }
-
     @Override
     public void deletePurchase(Long id) throws Exception {
         Purchase purchase = purchaseRepository.findById(id).orElseThrow();
