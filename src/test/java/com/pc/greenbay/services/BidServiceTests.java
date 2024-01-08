@@ -50,7 +50,7 @@ public class BidServiceTests {
     @BeforeEach
     public void setup() {
         UUID sellerId = UUID.randomUUID();
-        seller = new User.Builder()
+        seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password("u12345")
@@ -65,7 +65,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenThrowNoMoneyException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -79,7 +79,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -108,7 +108,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenItemNotFoundException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -122,7 +122,7 @@ public class BidServiceTests {
         UUID invalidItemId = UUID.randomUUID();
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -150,7 +150,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenThrowBidderIsSellerException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -184,7 +184,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenThrowNotSellableException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -198,7 +198,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -227,7 +227,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenThrowNotEnoughMoneyException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -241,7 +241,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -270,7 +270,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenThrowBitTooLowException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -284,7 +284,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -313,7 +313,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenSaveBidObjectAndReturnDTO() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -327,7 +327,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -337,7 +337,7 @@ public class BidServiceTests {
 
         int bidAmount = 25;
 
-        Bid bid = new Bid.Builder()
+        Bid bid = Bid.builder()
                 .id(1L)
                 .item(item)
                 .bidder(bidder)
@@ -368,7 +368,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenSavingBidThrowException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -382,7 +382,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -392,7 +392,7 @@ public class BidServiceTests {
 
         int bidAmount = 25;
 
-        Bid bid = new Bid.Builder()
+        Bid bid = Bid.builder()
                 .id(1L)
                 .item(item)
                 .bidder(bidder)
@@ -420,7 +420,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenPurchaseItemAndReturnDTO() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -434,7 +434,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -444,7 +444,7 @@ public class BidServiceTests {
 
         int bidAmount = 51;
 
-        Bid bid = new Bid.Builder()
+        Bid bid = Bid.builder()
                 .id(1L)
                 .item(item)
                 .bidder(bidder)
@@ -453,7 +453,7 @@ public class BidServiceTests {
 
         User buyer = bidder;
 
-        Purchase purchase = new Purchase.Builder()
+        Purchase purchase = Purchase.builder()
                 .id(1L)
                 .item(item)
                 .buyer(buyer)
@@ -488,7 +488,7 @@ public class BidServiceTests {
     public void givenValidInput_whenPlaceBid_thenThrowPurchaseFailedException() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -502,7 +502,7 @@ public class BidServiceTests {
 
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -512,7 +512,7 @@ public class BidServiceTests {
 
         int bidAmount = 51;
 
-        Bid bid = new Bid.Builder()
+        Bid bid = Bid.builder()
                 .id(1L)
                 .item(item)
                 .bidder(bidder)
@@ -521,7 +521,7 @@ public class BidServiceTests {
 
         User buyer = bidder;
 
-        Purchase purchase = new Purchase.Builder()
+        Purchase purchase = Purchase.builder()
                 .id(1L)
                 .item(item)
                 .buyer(buyer)
@@ -553,7 +553,7 @@ public class BidServiceTests {
     public void givenItemObject_whenFindBidsByItem_thenReturnDTOList() throws Exception {
         // given - precondition or setup
         UUID itemId = UUID.randomUUID();
-        item = new Item.Builder()
+        item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -566,7 +566,7 @@ public class BidServiceTests {
                 .build();
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password("u23456")
@@ -574,21 +574,21 @@ public class BidServiceTests {
                 .roles("ROLE_USER")
                 .build();
 
-        Bid bid1 = new Bid.Builder()
+        Bid bid1 = Bid.builder()
                 .id(1L)
                 .item(item)
                 .bidder(bidder)
                 .bidAmount(20)
                 .build();
 
-        Bid bid2 = new Bid.Builder()
+        Bid bid2 = Bid.builder()
                 .id(2L)
                 .item(item)
                 .bidder(bidder)
                 .bidAmount(30)
                 .build();
 
-        Bid bid3 = new Bid.Builder()
+        Bid bid3 = Bid.builder()
                 .id(3L)
                 .item(item)
                 .bidder(bidder)

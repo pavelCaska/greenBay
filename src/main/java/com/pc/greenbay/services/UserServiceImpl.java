@@ -1,5 +1,6 @@
 package com.pc.greenbay.services;
 
+import com.pc.greenbay.models.ResponseDTOs.UserListDTO;
 import com.pc.greenbay.models.User;
 import com.pc.greenbay.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -68,8 +70,13 @@ public class UserServiceImpl implements UserService {
         response.put(user.getUsername(), user.getBalance());
         return response;
     }
+//    @Override
+//    public List<User> listAllUsers() {
+//        return userRepository.findAllByRolesContains("ROLE_USER");
+//    }
     @Override
-    public List<User> listAllUsers() {
-        return userRepository.findAllByRolesContains("ROLE_USER");
+    public List<UserListDTO> listAllUsers() {
+        return userRepository.findAllByRolesContains("ROLE_USER").stream()
+                .map(o -> new UserListDTO(o.getId(), o.getUsername(), o.getPassword(), o.getBalance(), o.getRoles())).collect(Collectors.toList());
     }
 }

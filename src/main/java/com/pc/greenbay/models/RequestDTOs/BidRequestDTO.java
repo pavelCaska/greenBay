@@ -1,19 +1,16 @@
 package com.pc.greenbay.models.RequestDTOs;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class BidRequestDTO {
     private int bidAmount;
 
-    public BidRequestDTO() {
-    }
-    public BidRequestDTO(int bidAmount) {
-        this.bidAmount = bidAmount;
-    }
-
-    public int getBidAmount() {
-        return bidAmount;
-    }
-
-    public void setBidAmount(int bidAmount) {
-        this.bidAmount = bidAmount;
-    }
 }

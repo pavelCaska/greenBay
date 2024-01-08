@@ -72,7 +72,7 @@ public class ItemControllerITests {
 public void givenValidInput_whenCreateItem_thenReturnItemDTO() throws Exception {
     // given - precondition or setup
     UUID userId = UUID.randomUUID();
-    User seller = new User.Builder()
+    User seller = User.builder()
             .id(userId)
             .username("user1")
             .password(userService.encodePassword("u12345"))
@@ -106,7 +106,7 @@ public void givenValidInput_whenCreateItem_thenReturnItemDTO() throws Exception 
 public void givenInvalidPrice_whenCreateItem_thenReturnError() throws Exception {
     // given - precondition or setup
     UUID userId = UUID.randomUUID();
-    User seller = new User.Builder()
+    User seller = User.builder()
             .id(userId)
             .username("user1")
             .password(userService.encodePassword("u12345"))
@@ -136,7 +136,7 @@ public void givenInvalidPrice_whenCreateItem_thenReturnError() throws Exception 
 public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() throws Exception {
     // given - precondition or setup
     UUID userId = UUID.randomUUID();
-    User seller = new User.Builder()
+    User seller = User.builder()
             .id(userId)
             .username("user1")
             .password(userService.encodePassword("u12345"))
@@ -166,7 +166,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
     public void givenValidInput_whenShowItemDetails_thenReturnItemDetails() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -179,7 +179,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -193,7 +193,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item);
 
         UUID bidderId = UUID.randomUUID();
-        User bidder = new User.Builder()
+        User bidder = User.builder()
                 .id(bidderId)
                 .username("user2")
                 .password(userService.encodePassword("u23456"))
@@ -202,7 +202,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
                 .build();
         userRepository.save(bidder);
 
-        Bid bid1 = new Bid.Builder()
+        Bid bid1 = Bid.builder()
                 .id(1L)
                 .item(item)
                 .bidder(bidder)
@@ -210,7 +210,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
                 .build();
         bidRepository.save(bid1);
 
-        Bid bid2 = new Bid.Builder()
+        Bid bid2 = Bid.builder()
                 .id(2L)
                 .item(item)
                 .bidder(bidder)
@@ -218,7 +218,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
                 .build();
         bidRepository.save(bid2);
 
-        Bid bid3 = new Bid.Builder()
+        Bid bid3 = Bid.builder()
                 .id(3L)
                 .item(item)
                 .bidder(bidder)
@@ -239,15 +239,12 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
                 .andExpect(MockMvcResultMatchers.jsonPath("$.seller").value(seller.getUsername()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.bidList", Matchers.hasSize(3)));
     }
-
-
-
     @Test
     @DisplayName("Integration test for show item details method when invalid input given")
     public void givenInvalidInput_whenSHowItemDetails_thenReturnErrorDTO() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -260,7 +257,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -288,7 +285,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
     public void givenValidInputNotSellable_whenSHowItemDetails_thenReturnItemDetails() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -301,7 +298,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -315,7 +312,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item);
 
         UUID buyerId = UUID.randomUUID();
-        User buyer = new User.Builder()
+        User buyer = User.builder()
                 .id(buyerId)
                 .username("user2")
                 .password(userService.encodePassword("u23456"))
@@ -324,7 +321,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
                 .build();
         userRepository.save(buyer);
 
-        Purchase purchase = new Purchase.Builder()
+        Purchase purchase = Purchase.builder()
                 .id(1L)
                 .item(item)
                 .buyer(buyer)
@@ -352,7 +349,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
     public void givenItemNotSellableButNoPurchase_whenShowItemDetails_thenReturnErrorDTO() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -365,7 +362,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -393,7 +390,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
     public void givenValidInput_whenListItemsPages_thenReturnPageList() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -406,7 +403,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -420,7 +417,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item);
 
         UUID item2Id = UUID.randomUUID();
-        Item item2 = new Item.Builder()
+        Item item2 = Item.builder()
                 .id(item2Id)
                 .name("iPhone")
                 .description("mobile phone")
@@ -434,7 +431,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item2);
 
         UUID item3Id = UUID.randomUUID();
-        Item item3 = new Item.Builder()
+        Item item3 = Item.builder()
                 .id(item3Id)
                 .name("iPad")
                 .description("tablet")
@@ -448,7 +445,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item3);
 
         UUID item4Id = UUID.randomUUID();
-        Item item4 = new Item.Builder()
+        Item item4 = Item.builder()
                 .id(item4Id)
                 .name("MacBook")
                 .description("notebook")
@@ -480,7 +477,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
     public void givenValidInputPageTwo_whenListItemsPages_thenReturnPageList() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -493,7 +490,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -507,7 +504,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item);
 
         UUID item2Id = UUID.randomUUID();
-        Item item2 = new Item.Builder()
+        Item item2 = Item.builder()
                 .id(item2Id)
                 .name("iPhone")
                 .description("mobile phone")
@@ -521,7 +518,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item2);
 
         UUID item3Id = UUID.randomUUID();
-        Item item3 = new Item.Builder()
+        Item item3 = Item.builder()
                 .id(item3Id)
                 .name("iPad")
                 .description("tablet")
@@ -535,7 +532,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item3);
 
         UUID item4Id = UUID.randomUUID();
-        Item item4 = new Item.Builder()
+        Item item4 = Item.builder()
                 .id(item4Id)
                 .name("MacBook")
                 .description("notebook")
@@ -567,7 +564,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
     public void givenInvalidParameter_whenListItemsPages_thenReturnErrorDTO() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -580,7 +577,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -594,7 +591,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item);
 
         UUID item2Id = UUID.randomUUID();
-        Item item2 = new Item.Builder()
+        Item item2 = Item.builder()
                 .id(item2Id)
                 .name("iPhone")
                 .description("mobile phone")
@@ -608,7 +605,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item2);
 
         UUID item3Id = UUID.randomUUID();
-        Item item3 = new Item.Builder()
+        Item item3 = Item.builder()
                 .id(item3Id)
                 .name("iPad")
                 .description("tablet")
@@ -622,7 +619,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item3);
 
         UUID item4Id = UUID.randomUUID();
-        Item item4 = new Item.Builder()
+        Item item4 = Item.builder()
                 .id(item4Id)
                 .name("MacBook")
                 .description("notebook")
@@ -651,7 +648,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
     public void givenValidInput_whenShow_thenReturnItemList() throws Exception {
         // given - precondition or setup
         UUID sellerId = UUID.randomUUID();
-        User seller = new User.Builder()
+        User seller = User.builder()
                 .id(sellerId)
                 .username("user1")
                 .password(userService.encodePassword("u12345"))
@@ -664,7 +661,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         authorizedUser += jwtService.generateToken("user1");
 
         UUID itemId = UUID.randomUUID();
-        Item item = new Item.Builder()
+        Item item = Item.builder()
                 .id(itemId)
                 .name("Lenovo")
                 .description("tablet")
@@ -678,7 +675,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item);
 
         UUID item2Id = UUID.randomUUID();
-        Item item2 = new Item.Builder()
+        Item item2 = Item.builder()
                 .id(item2Id)
                 .name("iPhone")
                 .description("mobile phone")
@@ -692,7 +689,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item2);
 
         UUID item3Id = UUID.randomUUID();
-        Item item3 = new Item.Builder()
+        Item item3 = Item.builder()
                 .id(item3Id)
                 .name("iPad")
                 .description("tablet")
@@ -706,7 +703,7 @@ public void givenMissingNameAndDescription_whenCreateItem_thenReturnError() thro
         itemRepository.save(item3);
 
         UUID item4Id = UUID.randomUUID();
-        Item item4 = new Item.Builder()
+        Item item4 = Item.builder()
                 .id(item4Id)
                 .name("MacBook")
                 .description("notebook")

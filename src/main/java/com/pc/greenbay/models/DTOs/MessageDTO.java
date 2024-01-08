@@ -1,20 +1,16 @@
 package com.pc.greenbay.models.DTOs;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class MessageDTO {
     private String message;
 
-    public MessageDTO() {
-    }
-
-    public MessageDTO(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
