@@ -38,16 +38,10 @@ public class UserControllerITests {
     private JwtService jwtService;
     @Autowired
     private UserRepository userRepository;
-//    @Autowired
-//    private BidService bidService;
     @Autowired
     private BidRepository bidRepository;
-//    @Autowired
-//    private PurchaseService purchaseService;
     @Autowired
     private PurchaseRepository purchaseRepository;
-//    @Autowired
-//    private PurchaseService itemService;
     @Autowired
     private ItemRepository itemRepository;
 
@@ -342,12 +336,9 @@ public class UserControllerITests {
         ResultActions response = mockMvc.perform(patch("/api/balance/{username}", "user2")
                 .header("authorization", authorizedUser)
                 .contentType(MediaType.APPLICATION_JSON));
-//                .param("newBalance", "-1"));
-
 
         // then - verify the output
         response.andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("error").value("Parameter 'newBalance' is missing."));
     }
-
 }

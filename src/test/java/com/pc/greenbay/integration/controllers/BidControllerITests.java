@@ -198,7 +198,6 @@ public class BidControllerITests {
                 .build();
         itemRepository.save(item);
 
-//        UUID bidderId = UUID.randomUUID();
         User bidder = seller;
         String authorizedUser = "Bearer ";
         authorizedUser += jwtService.generateToken("user1");
@@ -489,7 +488,4 @@ public class BidControllerITests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.buyer").value("user2"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.bought_at").value("51"));
     }
-
-
-
 }
